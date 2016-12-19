@@ -20,6 +20,7 @@ class ComposerStaticInitc925cacc51c2b35076844b5b959b4167
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\Debug\\' => 24,
             'Silex\\' => 6,
+            'SiApi\\' => 6,
         ),
         'P' => 
         array (
@@ -55,6 +56,10 @@ class ComposerStaticInitc925cacc51c2b35076844b5b959b4167
         'Silex\\' => 
         array (
             0 => __DIR__ . '/..' . '/silex/silex/src/Silex',
+        ),
+        'SiApi\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/SiApi',
         ),
         'Psr\\Log\\' => 
         array (
