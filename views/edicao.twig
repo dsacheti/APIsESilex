@@ -1,0 +1,23 @@
+{% extends 'layout.twig' %}
+{% block titulo %}Cadastro de produtos{% endblock %}
+{% block conteudo %}
+    <form id="edtprodutos" action="{{ url('trataedtProduto') }}" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label" for="nome">Nome:</label>
+            <input class="form-control" id="nome" name="nome" value="{{ produto.nome }}">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="desc">Descricao:</label>
+            <input class="form-control" id="desc" name="desc" value="{{ produto.desc }}">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="preco">Valor:</label>
+            <input class="form-control" id="preco" name="preco" value="{{ produto.preco }}">
+        </div>
+        <input type="hidden" name="id" value="{{ produto.id }}">
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit" value="Gravar">
+            <a class="btn btn-default" href="{{ url('home') }}">Cancelar</a>
+        </div>
+    </form>
+{% endblock %}

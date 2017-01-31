@@ -74,5 +74,15 @@ class Produto
         $this->valor = $valor;
         return $this;
     }
+    
+    public function toArray(){
+        $prodArray = [
+            'id' =>$this->getId(),
+            'nome' => $this->getNome(),
+            'descricao' =>$this->getDescricao(),
+            'valor' =>$this->getValor()
+        ];
+        return $prodArray;
+    }
 
 }

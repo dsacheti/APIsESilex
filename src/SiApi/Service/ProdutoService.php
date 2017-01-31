@@ -43,8 +43,11 @@ class ProdutoService
         $produto->setNome($dados['nome']);
         $produto->setDescricao($dados['desc']);
         $produto->setValor($dados['preco']);
-		
-        return $this->produtoMapper->insert($produto, $this->bd);
+        
+        $sim = $this->produtoMapper->table($this->bd);
+        if ($sim) {
+            return $this->produtoMapper->insert($produto, $this->bd);
+        }
     }
     
     public function fetchAll(){
@@ -52,28 +55,31 @@ class ProdutoService
         $prodLista = array();
         $i = 0;
         foreach ($lista as $item) {
+            $this->produto->setId($item['id']);
             $this->produto->setNome($item['nome']);
             $this->produto->setDescricao($item['desc']);
             $this->produto->setValor($item['preco']);
-            $prodLista[$i] = $this->produto;
+            $prodLista[$i] = $this->produto->toArray();
             $i++;
         }
         return $prodLista;
     }
     
-    public function find(int $id):Produto
+    public function find(int $id)
     {
         $dados = $this->produtoMapper->find($this->bd, $id);
-        $p = $this->produto;
-        $p->setNome($dados['nome']);
-        $p->setDescricao($dados['desc']);
-        $p->setValor($dados['preco']);
+        $p = array();
+        $p['id'] = $dados['id'];
+        $p['nome'] = $dados['nome'];
+        $p['desc'] = $dados['desc'];
+        $p['preco'] = $dados['preco'];
         return $p;
     }
     
     public function update(array $dados)
     {
 		$produto = $this->produto;
+        $produto->setId($dados['id']);
 		$produto->setNome($dados['nome']);
 		$produto->setDescricao($dados['desc']);
 		$produto->setValor($dados['preco']);
@@ -83,6 +89,7 @@ class ProdutoService
     
     public function delete(int $id)
     {
+        $id = (int)$id;
         return $this->produtoMapper->delete($this->bd, $id);
     }
 }

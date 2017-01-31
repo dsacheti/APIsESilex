@@ -1,0 +1,8 @@
+{% extends 'layout.twig' %}
+{% block titulo %}
+    Produto gravado
+{% endblock %}
+{% block conteudo %}
+    <h3>O produto foi gravado com sucesso!"</h3>
+    <p><a class="btn btn-success" href="{{ url('home') }}">Home</a><a class="btn btn-success" href="{{ url('listarProdutos') }}">Lista de Produtos</a> </p>
+{% endblock %}
