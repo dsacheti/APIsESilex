@@ -13,10 +13,10 @@ $app->register(new Silex\Provider\TwigServiceProvider(),array(
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
 $app['persistencia'] = function (){
-    $u='homestead';
-    $p = 'secret';
+    $u='user';
+    $p = 'password';
     try{
-        return $pdo_dados = new PDO('mysql:host=localhost;dbname=apis_silex', $u, $p,array(PDO::MYSQL_ATTR_INIT_COMMAND =>"SET NAMES 'UTF8'"));
+        return $pdo_dados = new PDO('mysql:host=localhost;dbname=banco', $u, $p,array(PDO::MYSQL_ATTR_INIT_COMMAND =>"SET NAMES 'UTF8'"));
         
     } catch (PDOException $ex){
         return $ex->getMessage();
