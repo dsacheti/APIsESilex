@@ -50,7 +50,7 @@ class ProdutoMapper
             $stmt->execute();
             $retorno = $stmt->fetch();
             return $retorno;
-        } catch (PDOException $ex) {
+        } catch (\PDOException $ex) {
             return $ex;
         }
     }
@@ -83,13 +83,17 @@ class ProdutoMapper
     }
     
     public function table(\PDO $bd){
-        $stmt = $bd->prepare('CREATE TABLE IF NOT EXISTS `produtos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `desc` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `preco` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=343 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci');
-        return $stmt->execute();
+        try {
+            $stmt = $bd->prepare('CREATE TABLE IF NOT EXISTS `produtos` (
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `nome` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+            `desc` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+            `preco` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+            PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB AUTO_INCREMENT=343 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci');
+            return $stmt->execute();
+        } catch (\PDOException $ex) {
+            return $ex;
+        }
     }
 }
