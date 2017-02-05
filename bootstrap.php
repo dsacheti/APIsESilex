@@ -23,4 +23,5 @@ $app['produtoService'] = function()use ($app){
     $banco = $app['persistencia'];
     
     return $pService = new \SiApi\Service\ProdutoService($banco,$produto,$produtoMapper);
+   
 };
